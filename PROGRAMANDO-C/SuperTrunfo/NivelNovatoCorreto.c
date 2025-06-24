@@ -53,13 +53,6 @@ Neste nível, foque apenas na leitura, armazenamento e exibição das informaç�
 Não utilize estruturas de repetição (como for ou while) ou estruturas de decisão (como if ou else). Seu código deve ser uma sequência simples de instruções.
 */
 
-int preencherCarta(char *estado,char codigoCarta[4],char nomeCidade[20],int *numeroHabitantes,int *numeroPontosTuristicos,float *area,float *pib)
-{
-    
-
-    return 0;
-}
-
 int main()
 {
     /* Declarando variaveis */
@@ -103,11 +96,11 @@ int main()
     scanf("%d", &numeroHabitantes[0]);
 
     // Entrada area da cidade em m2 (Sem tratamento de erros)
-    printf("Numero da área em m² da cidade: ");
+    printf("Numero da área em km² da cidade: ");
     scanf("%f", &area[0]);
 
     // Entrada PIB da cidade
-    printf("Numero do PIB da cidade: ");
+    printf("Numero do PIB da cidade em bilhão(oes): ");
     scanf("%f", &pib[0]);
 
     // Entrada do número de pontos turisticos da cidade
@@ -136,11 +129,11 @@ int main()
     scanf("%d", &numeroHabitantes[1]);
 
     // Entrada area da cidade em m2 (Sem tratamento de erros)
-    printf("Numero da área em m² da cidade: ");
+    printf("Numero da área em Km² da cidade: ");
     scanf("%f", &area[1]);
 
     // Entrada PIB da cidade
-    printf("Numero do PIB da cidade: ");
+    printf("Numero do PIB da cidade em bilhão(oes): ");
     scanf("%f", &pib[1]);
 
     // Entrada do número de pontos turisticos da cidade
