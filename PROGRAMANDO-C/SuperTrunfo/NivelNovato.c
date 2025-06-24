@@ -53,35 +53,20 @@ Neste nível, foque apenas na leitura, armazenamento e exibição das informaç�
 Não utilize estruturas de repetição (como for ou while) ou estruturas de decisão (como if ou else). Seu código deve ser uma sequência simples de instruções.
 */
 
-int main()
+int preencherCarta(char *estado,char codigoCarta[4],char nomeCidade[20],int *numeroHabitantes,int *numeroPontosTuristicos,float *area,float *pib)
 {
-    /* Declarando variaveis */
-
-    // Chars
-    char    estado,                     // Estado
-            codigoCarta[4],             // Codigo da Carta
-            nomeCidade[20];             // Nome da cidade
-
-    // Ints
-    int     numeroHabitantes,           // Numedo de habitantes
-            numeroPontosTuristicos;     // Numero de pontos turisticos
-
-    // Floats
-    float   area,                       // Area da cidade
-            pib;                        // Pib da cidade
-
-    
-    /* Entrada de dados */
-
     // Entrada do estado LETRA
     printf("Informe o estado, apenas com letras de A até H (Utilizar Somente maiúculo!): \n");
 
     while (1) // Loop para aceitar apenas letras de A até H
     {
         // Solicita entrada do usuario
-        scanf(" %c", &estado); // Espaço antes do %c para não pegar buffer do enter, se não sai 2 mensagens.
+        scanf(" %c", estado); // Espaço antes do %c para não pegar buffer do enter, se não sai 2 mensagens.
 
-        if (estado >= 'A' && estado <= 'H') // Verifica se está entre A e H para seguir a proxima etapa
+        // Não estou usando & no estado pois é um apontamento.... Já está o endereço...
+
+        // Abaixo e nos proximos usarei * para indicar que o que eu quero é o que está no endereço e não o endereço
+        if (*estado >= 'A' && *estado <= 'H') // Verifica se está entre A e H para seguir a proxima etapa
         {
             break; // Se estiver dentro do RANGE. Break! Sai do "loop"
         }
@@ -97,7 +82,7 @@ int main()
         // Solicita entrada do usuario
         scanf(" %s", codigoCarta); // Espaço antes do %s para não pegar buffer do enter, se não sai 2 mensagens.
 
-        if (codigoCarta[0] == estado &&                     // Verifica se é a mesma letra do estado
+        if (codigoCarta[0] == *estado &&                     // Verifica se é a mesma letra do estado
             codigoCarta[1] == '0' &&                        // Verifica se escreveu o 0 
             codigoCarta[2] > '0' && codigoCarta[2] <= '4')  // Verifica se o terceiro caractere é um numero entre 1 e 4
         {
@@ -115,29 +100,69 @@ int main()
 
     // Entrada numero da população (Sem tratamento de erros)
     printf("Número da população sem VIRGULAS!: ");
-    scanf("%d", &numeroHabitantes);
+    scanf("%d", numeroHabitantes);
 
     // Entrada area da cidade em m2 (Sem tratamento de erros)
     printf("Numero da área em m² da cidade: ");
-    scanf("%f", &area);
+    scanf("%f", area);
 
     // Entrada PIB da cidade
     printf("Numero do PIB da cidade: ");
-    scanf("%f", &pib);
+    scanf("%f", pib);
 
     // Entrada do número de pontos turisticos da cidade
     printf("Número de pontos turisticos da cidade: ");
-    scanf("%d", &numeroPontosTuristicos);
+    scanf("%d", numeroPontosTuristicos);
+
+    return 0;
+}
+
+int main()
+{
+    /* Declarando variaveis */
+
+    // LIMITE
+    int CARTAS_MAX = 2;                 // Quantidade de cartas
+
+    // Chars
+    char    estado[CARTAS_MAX],                     // Estado
+            codigoCarta[CARTAS_MAX][4],             // Codigo da Carta
+            nomeCidade[CARTAS_MAX][20];             // Nome da cidade
+
+    // Ints
+    int     numeroHabitantes[CARTAS_MAX],           // Numedo de habitantes
+            numeroPontosTuristicos[CARTAS_MAX];     // Numero de pontos turisticos
+
+    // Floats
+    float   area[CARTAS_MAX],                       // Area da cidade
+            pib[CARTAS_MAX];                        // Pib da cidade
+
+    
+    /* Entrada de dados */
+    for (size_t i = 0; i < CARTAS_MAX; i++)
+    {
+        // UTILIZANDO PONTEIROS
+        printf("\nPreenchendo dados da CARTA %02d\n\n",i+1);
+        preencherCarta( &estado[i],codigoCarta[i],nomeCidade[i],
+                        &numeroHabitantes[i],&numeroPontosTuristicos[i],
+                        &area[i],&pib[i]);
+    }
+    
 
     // Imprimindo resultados conforme pedido
-    printf("\nCarta 1:\n");
-    printf("Estado: %c\n", estado);
-    printf("Código: %s\n", codigoCarta);
-    printf("Nome da cidade: %s\n", nomeCidade);
-    printf("População: %d\n", numeroHabitantes);
-    printf("Área: %.2f km²\n", area);
-    printf("PIB: %.2f bilhões de reais\n", pib);
-    printf("Número de pontos turisticos: %d\n", numeroPontosTuristicos);
+    for (size_t i = 0; i < CARTAS_MAX; i++)
+    {
+        // SEM UTILIZAR PONTEIROS
+        printf("\nCarta %d:\n",i+1);
+        printf("Estado: %c\n", estado[i]);
+        printf("Código: %s\n", codigoCarta[i]);
+        printf("Nome da cidade: %s\n", nomeCidade[i]);
+        printf("População: %d\n", numeroHabitantes[i]);
+        printf("Área: %.2f km²\n", area[i]);
+        printf("PIB: %.2f bilhões de reais\n", pib[i]);
+        printf("Número de pontos turisticos: %d\n", numeroPontosTuristicos[i]);
+    }
+    
     
     return 0;
 }
