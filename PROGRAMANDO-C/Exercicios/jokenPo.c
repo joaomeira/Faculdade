@@ -73,45 +73,13 @@ int main()
     // 1 = Jogador A ; 2 = Jogador B; 0 = Empate
 
     if(escolhaJogadorA == escolhaJogadorB) vencedor = 0;
-    else
-    {
-        switch (escolhaJogadorA)
-        {
-        case 1:
-            switch (escolhaJogadorB)
-            {
-            case 2:
-                vencedor = 2;
-                break;
-            case 3:
+    else if (   escolhaJogadorA == 1 && escolhaJogadorB == 3 ||
+                escolhaJogadorA == 2 && escolhaJogadorB == 1 ||
+                escolhaJogadorA == 3 && escolhaJogadorB == 2)
                 vencedor = 1;
-                break;
-            }
-            break;
-        case 2:
-            switch (escolhaJogadorB)
-            {
-            case 1:
-                vencedor = 1;
-                break;
-            case 3:
-                vencedor = 2;
-                break;
-            }
-            break;
-        case 3:
-            switch (escolhaJogadorB)
-            {
-            case 1:
-                vencedor = 2;
-                break;
-            case 2:
-                vencedor = 1;
-                break;
-            }
-            break;
-        }
-    }
+    else vencedor = 2;
+
+    printf("\n%d\n",vencedor);
     
 
     // Retirado verificador IF poís o programa não continua se houver opção invalida!
