@@ -8,6 +8,8 @@ int main()
                 escolhaJogadorB,
                 vencedor;
 
+    srand(time(0)); // Inicializa o rand
+
     // Apresentação do jogo
     printf("Jogo de pedra, papel e tesoura!\n");
 
@@ -17,7 +19,8 @@ int main()
             "2- Papel",
             "3- Tesoura",
             "Escolha uma das opções: ");
-    scanf("%hd",&escolhaJogadorA);
+    // scanf("%hd",&escolhaJogadorA);
+    printf("%d\n",escolhaJogadorA = (rand() % 3)+ 1); // Escolhe um numero aleatorio 
 
     // Entrada de dados jogador B
     printf( "\nJOGADOR B - Você deve escolher uma das opções:\n%s\n%s\n%s\n%s",
@@ -25,7 +28,8 @@ int main()
             "2- Papel",
             "3- Tesoura",
             "Escolha uma das opções: ");
-    scanf("%hd",&escolhaJogadorB);
+    // scanf("%hd",&escolhaJogadorB);
+    printf("%d\n",escolhaJogadorB = (rand() % 3)+ 1); // Escolhe um numero aleatorio 
     
     // Imprimindo escolha do jogador A
     printf("\nJogador A escolheu: ");
@@ -68,67 +72,51 @@ int main()
     // Calculando a vitoria.
     // 1 = Jogador A ; 2 = Jogador B; 0 = Empate
 
-    switch (escolhaJogadorA)
+    if(escolhaJogadorA == escolhaJogadorB) vencedor = 0;
+    else
     {
-    case 1:
-        switch (escolhaJogadorB)
+        switch (escolhaJogadorA)
         {
         case 1:
-            vencedor = 0;
+            switch (escolhaJogadorB)
+            {
+            case 2:
+                vencedor = 2;
+                break;
+            case 3:
+                vencedor = 1;
+                break;
+            }
             break;
         case 2:
-            vencedor = 2;
+            switch (escolhaJogadorB)
+            {
+            case 1:
+                vencedor = 1;
+                break;
+            case 3:
+                vencedor = 2;
+                break;
+            }
             break;
         case 3:
-            vencedor = 1;
-            break;
-        default:
-            vencedor = -1;
-            break;
-        }
-        break;
-    case 2:
-        switch (escolhaJogadorB)
-        {
-        case 1:
-            vencedor = 1;
-            break;
-        case 2:
-            vencedor = 0;
-            break;
-        case 3:
-            vencedor = 2;
-            break;
-        default:
-            vencedor = -1;
+            switch (escolhaJogadorB)
+            {
+            case 1:
+                vencedor = 2;
+                break;
+            case 2:
+                vencedor = 1;
+                break;
+            }
             break;
         }
-        break;
-    case 3:
-        switch (escolhaJogadorB)
-        {
-        case 1:
-            vencedor = 2;
-            break;
-        case 2:
-            vencedor = 1;
-            break;
-        case 3:
-            vencedor = 0;
-            break;
-        default:
-            vencedor = -1;
-            break;
-        }
-        break;
-    
-    default:
-        vencedor = -1;
-        break;
     }
+    
 
-    if(vencedor >= 0) 
-    {
+    // Retirado verificador IF poís o programa não continua se houver opção invalida!
+    // if(vencedor >= 0) 
+    // {
         printf("\n\nO jogador que venceu foi o: ");
         switch (vencedor)
         {
@@ -141,13 +129,9 @@ int main()
         case 2:
             printf("Jogador B");
             break;
-
-        default:
-            printf("Ninguém.");
-            break;
         }
-    }
-    else printf("Ninguém venceu pois algém selecionou uma opção invalida!");
+    // }
+    // else printf("Ninguém venceu pois algém selecionou uma opção invalida!");
 
     return 0;
 }
