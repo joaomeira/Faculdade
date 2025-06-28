@@ -23,21 +23,23 @@ int main()
     printf("Digite o seu número (entre 1 e 100): ");
     scanf(" %hu", &numeroJogador); // $hu; h= short ; u = unsigned
 
-    // Mostrar numero do PC
-    printf("\nO número do computador é: %u\n", numeroPC);
 
+    // Tratamento menu
     switch (opcao)
     {
     case 'M':
     case 'm':
+        printf("\nVocê escolheu: MAIOR!\n");
         resultado = numeroJogador > numeroPC ? 1 : 0; // Pra que isso? Só gasta mais linha... 
         break;
     case 'N':
     case 'n':
+        printf("\nVocê escolheu: MENOR!\n");
         resultado = numeroJogador < numeroPC; // Como é 0 ou 1 o proprio c já faz isso quando usamos os operadores...
         break;
     case 'I':
     case 'i':
+        printf("\nVocê escolheu: IGUAL!\n");
         resultado = numeroJogador == numeroPC;
         break;
     
@@ -45,6 +47,11 @@ int main()
         printf("Opção de jogo inválida!");
         break;
     }
+
+    // Mostrar escolhas e numeros
+    
+    printf("\nO número do computador é  : %u\n", numeroPC);
+    printf("O número do jogador é     : %u\n",numeroJogador);
 
     if (resultado) printf("\n\n###### Você venceu! ######\n\n"); // Da mesma forma não precisa colocar resultado == 1 pois o c já entende que todo valor > 0  é true..
     else printf("\n\n----- Você perdeu! -----\n\n");
